@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Property — The Real Estate of Vadodara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.top{padding:130px var(--g) 40px;display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.top h1{font-size:clamp(50px,9vw,150px);line-height:.88}
+.top .pr{font:300 clamp(36px,4vw,60px) Fraunces,serif;color:var(--gold);text-align:right}
+.gal{position:relative;height:82vh;overflow:hidden;margin:0 var(--g);background:#222;cursor:zoom-in}
+.gal .s{position:absolute;inset:0;clip-path:inset(0 0 0 100%)}
+.gal .s.on{clip-path:inset(0)}
+.gal .ui{position:absolute;left:24px;right:24px;bottom:24px;display:flex;justify-content:space-between;align-items:center;z-index:5;color:var(--bone)}
+.gal .ui button{width:52px;height:52px;border-radius:50%;border:1px solid rgba(243,239,231,.5);background:rgba(15,14,12,.35);color:var(--bone);backdrop-filter:blur(6px)}
+.thumbs{display:flex;gap:10px;padding:14px var(--g) 0}
+.thumbs img{width:110px;height:76px;opacity:.4;cursor:pointer;transition:opacity .3s}
+.thumbs img.on{opacity:1}
+.body{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(30px,6vw,100px);padding:90px var(--g) 140px}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin:40px 0}
+.specs div{padding:22px 0;border-bottom:1px solid var(--line)}
+.specs b{display:block;font:300 28px Fraunces,serif}
+.amen{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.amen span{border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px}
+.side{position:sticky;top:100px;align-self:start;background:var(--ink);color:var(--bone);padding:38px}
+.side .field{margin-top:18px}
+.emi{margin-top:30px;padding-top:26px;border-top:1px solid rgba(243,239,231,.15)}
+.emi input[type=range]{width:100%;accent-color:var(--gold)}
+.emi .row{display:flex;justify-content:space-between;font-size:13px;color:#a39c91;margin-top:14px}
+.emi .out{font:300 46px Fraunces,serif;color:var(--gold);margin-top:10px}
+.sim{padding:0 var(--g) 140px}
+.sim .g{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:50px}
+#lb{position:fixed;inset:0;z-index:120;background:rgba(15,14,12,.96);display:none;place-items:center;cursor:zoom-out}
+#lb img{max-width:92vw;max-height:88vh;width:auto;height:auto;object-fit:contain}
+@media(max-width:900px){.body{grid-template-columns:1fr}.specs{grid-template-columns:1fr 1fr}.sim .g{grid-template-columns:1fr}.gal{height:60vh}}
+</style>
+</head>
+<body>
+<section class="top">
+ <div><div class="eyebrow" id="crumb"></div><br><h1 class="serif" id="h1"></h1></div>
+ <div class="pr"><span id="price"></span><div class="eyebrow" id="status"></div></div>
+</section>
+<div class="gal" id="gal" data-view><div class="ui"><span class="eyebrow" style="color:var(--sand)"><span id="gi">01</span> / <span id="gn"></span></span><div style="display:flex;gap:10px"><button id="gp" aria-label="Previous">←</button><button id="gx" aria-label="Next">→</button></div></div></div>
+<div class="thumbs" id="thumbs"></div>
+
+<section class="body">
+ <div>
+  <div class="eyebrow">Overview</div>
+  <p class="serif" id="desc" style="font-size:clamp(24px,2.6vw,38px);line-height:1.2;margin-top:20px" data-reveal></p>
+  <div class="specs" id="specs" data-reveal></div>
+  <div class="eyebrow">Amenities</div><div class="amen" id="amen" data-reveal></div>
+  <br><br><div class="eyebrow">Location</div>
+  <iframe id="map" style="width:100%;height:360px;border:0;margin-top:20px;filter:grayscale(1) contrast(1.1)" loading="lazy" data-reveal></iframe>
+ </div>
+ <aside class="side">
+  <div class="eyebrow">Book a site visit</div>
+  <h3 class="serif" style="font-size:34px;margin-top:10px">See it this week.</h3>
+  <form id="visit">
+   <div class="field"><label>Name</label><input name="n" required></div>
+   <div class="field"><label>Phone</label><input name="p" type="tel" required></div>
+   <div class="field"><label>Preferred day</label><input name="d" type="date"></div>
+   <br><button class="btn" style="width:100%;justify-content:center">Request visit on WhatsApp →</button>
+  </form>
+  <div class="emi"><div class="eyebrow">EMI calculator</div>
+   <div class="row"><span>Down payment</span><span id="dpv"></span></div><input type="range" id="dp" min="10" max="60" value="20">
+   <div class="row"><span>Tenure</span><span id="tnv"></span></div><input type="range" id="tn" min="5" max="30" value="20">
+   <div class="row"><span>Interest</span><span id="rtv"></span></div><input type="range" id="rt" min="7" max="11" step="0.05" value="8.5">
+   <div class="out" id="emi"></div><div class="eyebrow">per month · indicative</div></div>
+ </aside>
+</section>
+
+<section class="sim"><div class="eyebrow">You may also like</div><h2 class="big serif" style="margin-top:14px">Similar<br><em class="gold">homes.</em></h2><div class="g" id="sim"></div></section>
+<div id="lb"><img id="lbimg" alt=""></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+const P=PROPS.find(p=>p.id===new URLSearchParams(location.search).get('id'))||PROPS[0];
+document.title=P.name+' — The Real Estate of Vadodara';
+crumb.textContent=`${P.type} · ${P.area}, Vadodara`;h1.innerHTML=P.name.replace(/ (?=\S+$)/,'<br>');
+price.textContent=inr(P.price);status.textContent=P.status;desc.textContent=P.desc;
+specs.innerHTML=[[P.bhk?P.bhk+' BHK':P.type,'Configuration'],[P.sqft.toLocaleString('en-IN'),'Sq ft'],['₹'+Math.round(P.price/P.sqft).toLocaleString('en-IN'),'Per sq ft'],[P.floor,'Floor'],[P.facing,'Facing'],[P.area,'Locality']].map(([b,l])=>`<div><b>${b}</b><span class="eyebrow">${l}</span></div>`).join('');
+amen.innerHTML=P.amen.map(a=>`<span>${a}</span>`).join('');
+map.src=`https://maps.google.com/maps?q=${encodeURIComponent(P.area+', Vadodara')}&z=14&output=embed`;
+sim.innerHTML=PROPS.filter(p=>p!==P&&(p.type===P.type||p.area===P.area)).concat(PROPS.filter(p=>p!==P)).filter((p,i,a)=>a.indexOf(p)===i).slice(0,3).map(cardHTML).join('');
+
+// gallery: directional clip wipe
+gal.insertAdjacentHTML('afterbegin',P.imgs.map((s,i)=>`<div class="s ${i?'':'on'}"><img src="${s}" alt=""></div>`).join(''));
+thumbs.innerHTML=P.imgs.map((s,i)=>`<img src="${s}" class="${i?'':'on'}" data-i="${i}" alt="">`).join('');
+const S=[...gal.querySelectorAll('.s')];let c=0,busy=false;gn.textContent='0'+S.length;
+function go(n){if(busy||n===c)return;busy=true;const d=n>c?1:-1,a=S[c],b=S[n];
+ gsap.set(b,{clipPath:d>0?'inset(0 0 0 100%)':'inset(0 100% 0 0)',zIndex:2});gsap.set(a,{zIndex:1});
+ gsap.timeline({onComplete:()=>{a.classList.remove('on');b.classList.add('on');gsap.set(b,{zIndex:1});busy=false}})
+  .to(b,{clipPath:'inset(0 0% 0 0%)',duration:1.1,ease:'expo.inOut'})
+  .fromTo(b.querySelector('img'),{scale:1.3},{scale:1,duration:1.6,ease:'expo.out'},0);
+ c=n;gi.textContent='0'+(n+1);thumbs.querySelectorAll('img').forEach((t,i)=>t.classList.toggle('on',i===n))}
+gx.onclick=e=>{e.stopPropagation();go((c+1)%S.length)};gp.onclick=e=>{e.stopPropagation();go((c-1+S.length)%S.length)};
+thumbs.onclick=e=>e.target.dataset.i&&go(+e.target.dataset.i);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')gx.click();if(e.key==='ArrowLeft')gp.click();if(e.key==='Escape')lb.style.display='none'});
+gal.onclick=()=>{lbimg.src=P.imgs[c];lb.style.display='grid';gsap.from('#lbimg',{scale:.9,opacity:0,duration:.5})};
+lb.onclick=()=>lb.style.display='none';
+
+// EMI
+function emi(){const L=P.price*(1-dp.value/100),r=rt.value/1200,n=tn.value*12,m=L*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+ dpv.textContent=dp.value+'% · '+inr(P.price*dp.value/100);tnv.textContent=tn.value+' yrs';rtv.textContent=(+rt.value).toFixed(2)+'%';
+ emi_out.textContent='₹'+Math.round(m).toLocaleString('en-IN')}
+const emi_out=document.getElementById('emi');[dp,tn,rt].forEach(i=>i.oninput=emi);emi();
+
+visit.onsubmit=e=>{e.preventDefault();const f=new FormData(visit);open(waLink(`Hi, I'm ${f.get('n')} (${f.get('p')}). I'd like a site visit for ${P.name}, ${P.area} (${inr(P.price)})${f.get('d')?' on '+f.get('d'):''}.`))};
+
+riseLines('#h1',PAGE_IN,'-=.4');
+PAGE_IN.from('.top .pr,#crumb',{opacity:0,y:20,duration:1},'-=1').from('#gal',{clipPath:'inset(100% 0 0 0)',duration:1.4,ease:'expo.inOut'},'-=1').from('#gal .s.on img',{scale:1.4,duration:2,ease:'expo.out'},'<');
+reveals();
+</script>
+</body>
+</html>

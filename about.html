@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — The Real Estate of Vadodara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center}
+.story .ph{height:80vh;overflow:hidden}
+.story .ph img{height:120%}
+.story p.l{font:300 clamp(24px,2.6vw,40px)/1.2 Fraunces,serif}
+.tl{position:relative;margin-top:70px}
+.tl .line{position:absolute;left:0;right:0;top:34px;height:1px;background:rgba(243,239,231,.15)}
+.tl .fill{position:absolute;left:0;top:34px;height:1px;background:var(--gold);width:0}
+.tl .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+.tl .st i{display:block;width:13px;height:13px;border-radius:50%;background:var(--ink);border:1px solid var(--gold);margin:28px 0 26px}
+.tl .st b{display:block;font:300 28px Fraunces,serif;margin-bottom:8px}
+.tl .st p{color:#a39c91;font-size:14px}
+.faq details{border-top:1px solid var(--line);padding:28px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font:300 clamp(22px,2.4vw,36px) Fraunces,serif}
+.faq summary::after{content:"+";transition:transform .4s;color:var(--gold)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);max-width:760px;margin-top:16px}
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.revs div{border:1px solid var(--line);padding:34px}
+.revs q{font:300 24px/1.25 Fraunces,serif;display:block;margin:16px 0}
+@media(max-width:900px){.story,.revs{grid-template-columns:1fr}.tl .steps{grid-template-columns:1fr}.tl .line,.tl .fill{display:none}}
+</style>
+</head>
+<body>
+<section class="phero">
+ <div class="eyebrow">About TREV</div><br>
+ <h1 class="serif" id="h1">Local. Personal.<br><em class="gold">Always on.</em></h1>
+ <div class="row"><p>A Bhayli-based real estate practice from Vihav Trade Center, open 24 hours because property questions don't wait for office hours.</p><span class="eyebrow">★★★★★ 5.0 · 16 Google reviews</span></div>
+</section>
+
+<section class="sec wrap story">
+ <div class="ph imgreveal"><img src="img/gbp5.jpg" alt="" data-parallax></div>
+ <div><div class="eyebrow">Our story</div><br>
+  <p class="l" data-reveal>We started with one simple rule: never show a client a home we haven't walked through ourselves.</p><br>
+  <p style="color:var(--muted)" data-reveal>From first-time buyers in Gotri to investors on the Vasna–Bhayli corridor, we work the same way — a real conversation, a short honest shortlist, and every document checked before money moves. Our clients' homes are the photographs on this site.</p><br>
+  <a class="btn" href="contact.html" data-reveal>Talk to us →</a></div>
+</section>
+
+<section class="sec dark wrap">
+ <div class="eyebrow">The process</div><br>
+ <h2 class="big serif">First call to<br><em class="sand">keys in hand.</em></h2>
+ <div class="tl" id="tl"><div class="line"></div><div class="fill" id="fill"></div>
+  <div class="steps">
+   <div class="st"><i></i><b>Listen</b><p>15-minute call — budget, area, must-haves, timelines.</p></div>
+   <div class="st"><i></i><b>Shortlist</b><p>Five verified options on WhatsApp within 48 hours.</p></div>
+   <div class="st"><i></i><b>Visit</b><p>Guided site visits on your schedule, weekends included.</p></div>
+   <div class="st"><i></i><b>Negotiate</b><p>Price, payment plan, parking and possession, handled.</p></div>
+   <div class="st"><i></i><b>Handover</b><p>Loan, stamp duty, registry and society transfer — done.</p></div>
+  </div></div>
+</section>
+
+<section class="sec wrap">
+ <div class="eyebrow">What clients say</div>
+ <div class="revs">
+  <div data-reveal><span class="gold">★★★★★</span><q>Great experience! Professional service, quick response, and a very smooth property process.</q><span class="eyebrow">Google review</span></div>
+  <div data-reveal><span class="gold">★★★★★</span><q>Good service and smooth process for any deal.</q><span class="eyebrow">Google review</span></div>
+  <div data-reveal><span class="gold">★★★★★</span><q>Good service.</q><span class="eyebrow">Google review</span></div>
+ </div>
+</section>
+
+<section class="sec wrap faq" style="padding-top:0">
+ <div class="eyebrow">Questions</div><br><h2 class="big serif" style="margin-bottom:50px">Asked<br><em class="gold">often.</em></h2>
+ <details><summary>Do you charge buyers a fee?</summary><p>Our brokerage is discussed upfront and in writing before any visit — no surprises at registry.</p></details>
+ <details><summary>Can you help with a home loan?</summary><p>Yes. We work with leading banks and housing-finance companies to get you pre-approved before you shortlist.</p></details>
+ <details><summary>How do you verify a property?</summary><p>Title search, RERA registration check, approved plan match and a physical visit — before the listing ever reaches you.</p></details>
+ <details><summary>I want to sell. How fast can you list?</summary><p>Usually within 48 hours, including a pricing opinion based on recent deals in your society and locality.</p></details>
+ <details><summary>Do you handle commercial property?</summary><p>Offices, showrooms and shops — buying, selling and leasing across Vadodara's main corridors.</p></details>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+riseLines('#h1',PAGE_IN,'-=.4');
+gsap.to('#fill',{width:'100%',ease:'none',scrollTrigger:{trigger:'#tl',start:'top 75%',end:'bottom 45%',scrub:true}});
+gsap.from('.tl .st',{y:40,opacity:0,stagger:.15,duration:1,ease:'expo.out',scrollTrigger:{trigger:'#tl',start:'top 75%'}});
+document.querySelectorAll('.faq details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)gsap.from(d.querySelector('p'),{y:-10,opacity:0,duration:.5});ScrollTrigger.refresh()}));
+reveals();
+</script>
+</body>
+</html>

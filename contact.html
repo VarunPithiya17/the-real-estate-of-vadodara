@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — The Real Estate of Vadodara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.c{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,6vw,100px)}
+.c form{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.c .full{grid-column:1/-1}
+.intent{display:flex;gap:8px;flex-wrap:wrap}
+.intent label{border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-size:13px;cursor:pointer;transition:all .3s}
+.intent input{display:none}
+.intent input:checked+span{color:var(--bone)}
+.intent label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--bone)}
+.info>div{border-top:1px solid var(--line);padding:26px 0}
+.info b{display:block;font:300 28px Fraunces,serif;margin-top:6px}
+iframe{width:100%;height:60vh;border:0;filter:grayscale(1) contrast(1.1);display:block}
+#ok{display:none;padding:30px;background:var(--sand);margin-top:20px}
+@media(max-width:900px){.c,.c form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<section class="phero">
+ <div class="eyebrow">Contact</div><br>
+ <h1 class="serif" id="h1">Let's talk<br><em class="gold">property.</em></h1>
+ <div class="row"><p>Open 24 hours. Call, WhatsApp, or tell us what you need below — we reply with a real shortlist, not a sales pitch.</p><span class="live eyebrow">Usually replies within an hour</span></div>
+</section>
+<section class="sec wrap c">
+ <form id="f">
+  <div class="field full"><label>I want to</label><div class="intent">
+   <label><input type="radio" name="i" value="buy a home" checked><span>Buy a home</span></label>
+   <label><input type="radio" name="i" value="sell my property"><span>Sell</span></label>
+   <label><input type="radio" name="i" value="rent / lease"><span>Rent / lease</span></label>
+   <label><input type="radio" name="i" value="buy commercial space"><span>Commercial</span></label></div></div>
+  <div class="field"><label>Name</label><input name="n" required></div>
+  <div class="field"><label>Phone</label><input name="p" type="tel" pattern="[0-9+ ]{10,15}" required></div>
+  <div class="field"><label>Preferred area</label><select name="a"><option>Bhayli</option><option>Gotri</option><option>Sevasi</option><option>Alkapuri</option><option>Akota</option><option>Race Course</option><option>Not sure yet</option></select></div>
+  <div class="field"><label>Budget</label><select name="b"><option>Under ₹75 L</option><option>₹75 L – 1.5 Cr</option><option>₹1.5 – 3 Cr</option><option>₹3 Cr +</option></select></div>
+  <div class="field full"><label>Anything else?</label><textarea name="m" rows="3" placeholder="Floor preference, possession timeline, school nearby…"></textarea></div>
+  <div class="full"><button class="btn">Send on WhatsApp →</button><div id="ok">Opening WhatsApp with your message — just hit send.</div></div>
+ </form>
+ <div class="info">
+  <div data-reveal><span class="eyebrow">Visit</span><b>Vihav Trade Center, near Waves Club, Bhayli, Vadodara 390009</b></div>
+  <div data-reveal><span class="eyebrow">Call</span><b><a href="tel:+919213648367">+91 92136 48367</a></b></div>
+  <div data-reveal><span class="eyebrow">Hours</span><b>Open 24 hours, 7 days</b></div>
+  <div data-reveal><span class="eyebrow">Rated</span><b class="gold">★★★★★ 5.0 on Google</b></div>
+ </div>
+</section>
+<div class="imgreveal"><iframe src="https://maps.google.com/maps?q=THE%20REAL%20ESTATE%20OF%20VADODARA%2C%20Vihav%20Trade%20Center%2C%20Bhayli&z=16&output=embed" loading="lazy" title="Map"></iframe></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+riseLines('#h1',PAGE_IN,'-=.4');
+PAGE_IN.from('#f .field,#f .btn',{y:40,opacity:0,stagger:.06,duration:1,ease:'expo.out'},'-=.8');
+f.onsubmit=e=>{e.preventDefault();const d=new FormData(f);
+ open(waLink(`Hi, I'm ${d.get('n')} (${d.get('p')}). I want to ${d.get('i')} in ${d.get('a')}, budget ${d.get('b')}.${d.get('m')?' '+d.get('m'):''}`));
+ ok.style.display='block';gsap.from('#ok',{y:20,opacity:0})};
+reveals();
+</script>
+</body>
+</html>

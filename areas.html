@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Areas — The Real Estate of Vadodara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.guide{display:grid;grid-template-columns:1fr 1fr;padding:0 var(--g)}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-right:clamp(20px,4vw,60px)}
+.pin .frame{position:relative;width:100%;height:76vh;overflow:hidden}
+.pin .frame img{position:absolute;inset:0;clip-path:inset(100% 0 0 0)}
+.pin .frame img.on{clip-path:inset(0)}
+.pin .idx{position:absolute;top:20px;left:20px;z-index:3;color:var(--bone);font:300 64px/1 Fraunces,serif;mix-blend-mode:difference}
+.area{min-height:100vh;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid var(--line);padding:60px 0}
+.area h2{font:300 clamp(56px,8vw,130px)/.9 Fraunces,serif;opacity:.15;transition:opacity .6s}
+.area.on h2{opacity:1}
+.area .v{font:300 clamp(22px,2.2vw,32px)/1.25 Fraunces,serif;margin:26px 0;max-width:520px}
+.area dl{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:520px}
+.area dt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.area dd{font-size:15px}
+.area .lnk{margin-top:30px;display:inline-flex;gap:10px;border-bottom:1px solid;padding-bottom:4px;align-self:flex-start}
+@media(max-width:900px){.guide{grid-template-columns:1fr}.pin{display:none}.area{min-height:auto}.area h2{opacity:1}}
+</style>
+</head>
+<body>
+<section class="phero">
+ <div class="eyebrow">Neighbourhood guide</div><br>
+ <h1 class="serif" id="h1">Six addresses<br><em class="gold">worth knowing.</em></h1>
+ <div class="row"><p>Where Vadodara is growing, what it costs per square foot, and who each locality suits — from people who show homes there every day.</p><span class="eyebrow">*Indicative rates · ask us for today's numbers</span></div>
+</section>
+<section class="guide">
+ <div class="pin"><div class="frame" id="frame"><span class="idx" id="idx">01</span></div></div>
+ <div id="list"></div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+frame.insertAdjacentHTML('beforeend',AREAS.map((a,i)=>`<img src="${a.img}" class="${i?'':'on'}" alt="${a.name}">`).join(''));
+list.innerHTML=AREAS.map(a=>{const n=PROPS.filter(p=>p.area===a.name).length;return `<article class="area" id="${a.name.replace(/\s/g,'')}">
+ <h2>${a.name}</h2><p class="v">${a.vibe}</p>
+ <dl><div><dt>Rate / sq ft*</dt><dd>${a.psf}</dd></div><div><dt>Close to</dt><dd>${a.near}</dd></div></dl>
+ <a class="lnk" href="properties.html?area=${encodeURIComponent(a.name)}">${n?`See ${n} propert${n>1?'ies':'y'} in ${a.name}`:`Ask about ${a.name}`} →</a></article>`}).join('');
+const imgs=[...frame.querySelectorAll('img')];let cur=0;
+document.querySelectorAll('.area').forEach((el,i)=>ScrollTrigger.create({trigger:el,start:'top 55%',end:'bottom 55%',toggleClass:'on',onToggle:s=>{if(!s.isActive||i===cur)return;
+ const d=i>cur;gsap.set(imgs[i],{zIndex:2,clipPath:d?'inset(100% 0 0 0)':'inset(0 0 100% 0)'});gsap.set(imgs[cur],{zIndex:1});
+ gsap.to(imgs[i],{clipPath:'inset(0% 0 0% 0)',duration:1,ease:'expo.inOut'});gsap.fromTo(imgs[i],{scale:1.3},{scale:1,duration:1.6,ease:'expo.out'});
+ idx.textContent='0'+(i+1);cur=i}}));
+riseLines('#h1',PAGE_IN,'-=.4');
+PAGE_IN.add(()=>{if(location.hash)lenis.scrollTo(location.hash,{offset:-40})});
+reveals();
+</script>
+</body>
+</html>

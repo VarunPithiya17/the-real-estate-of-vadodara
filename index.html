@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Real Estate of Vadodara — Homes, curated.</title>
+<meta name="description" content="Buying, selling and commercial property advisory in Bhayli & West Vadodara. 5.0★ on Google. Open 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* hero slider */
+.hero{position:relative;height:100svh;min-height:660px;overflow:hidden;background:var(--ink);color:var(--bone)}
+.slide{position:absolute;inset:0;clip-path:inset(0 0 0 100%)}
+.slide.on{clip-path:inset(0 0 0 0%)}
+.slide img{filter:brightness(.5);transform:scale(1.2)}
+.hero-copy{position:absolute;left:var(--g);right:var(--g);bottom:clamp(30px,7vh,80px);z-index:3;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.hero h1{font-size:clamp(54px,11vw,200px);line-height:.86}
+.hero h1 em{color:var(--sand)}
+.hero .side{max-width:300px;font-size:14px}
+.hero .ctl{display:flex;align-items:center;gap:18px;margin-top:24px;padding-top:20px;border-top:1px solid rgba(243,239,231,.2)}
+.hero .ctl button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(243,239,231,.35);background:none;color:var(--bone);transition:background .3s}
+.hero .ctl button:hover{background:var(--bone);color:var(--ink)}
+.hero .num{font:300 30px Fraunces,serif}.hero .num small{font-size:14px;opacity:.5}
+.hero .bar{position:absolute;left:0;bottom:0;height:2px;background:var(--gold);z-index:4;width:0}
+.hero-tag{position:absolute;top:96px;right:var(--g);text-align:right;z-index:3;color:var(--sand)}
+.live{display:inline-flex;gap:8px;align-items:center}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#6fd18a;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #6fd18a}70%{box-shadow:0 0 0 10px transparent}}
+.slide-cap{position:absolute;top:96px;left:var(--g);z-index:3;font-size:13px;color:var(--sand)}
+@media(max-width:760px){.hero-copy{grid-template-columns:1fr}}
+
+/* intro */
+.intro p.big{font-size:clamp(28px,4.2vw,64px);line-height:1.12;max-width:1200px}
+.intro p.big .w{opacity:.12}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:100px;border-top:1px solid var(--line);padding-top:40px}
+.stats b{display:block;font:300 clamp(48px,6vw,96px)/1 Fraunces,serif}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+
+/* featured horizontal */
+.feat .head{display:flex;justify-content:space-between;align-items:end;padding-top:120px;padding-bottom:50px;gap:20px;flex-wrap:wrap}
+.hscroll{display:flex;gap:28px;padding:0 var(--g) 120px;width:max-content}
+.hscroll .pcard{width:clamp(280px,30vw,480px)}
+.dark .pcard small{color:#9b948a}
+
+/* stacking cards */
+.stack .card{position:sticky;top:12vh;height:76vh;margin-bottom:6vh;display:grid;grid-template-columns:1fr 1fr;background:var(--bone);border:1px solid var(--line);overflow:hidden;transform-origin:center top}
+.stack .card:nth-child(2){background:var(--sand)}.stack .card:nth-child(3){background:#e8dfcf}.stack .card:nth-child(4){background:var(--ink);color:var(--bone)}
+.stack .card .t{padding:clamp(28px,5vw,70px);display:flex;flex-direction:column;justify-content:space-between}
+.stack .card h3{font:300 clamp(36px,5vw,80px)/.95 Fraunces,serif}
+.stack .card .n{font:italic 300 22px Fraunces,serif;color:var(--gold)}
+.stack .card .i{overflow:hidden}
+@media(max-width:760px){.stack .card{grid-template-columns:1fr;height:auto}.stack .card .i{height:40vh}}
+
+/* services hover list */
+.svc{display:grid;grid-template-columns:80px 1fr 1fr;gap:24px;align-items:center;padding:34px 0;border-top:1px solid var(--line)}
+.svc:last-child{border-bottom:1px solid var(--line)}
+.svc .n{color:var(--muted);font-size:13px}
+.svc h3{font:300 clamp(30px,4.4vw,68px)/1 Fraunces,serif;transition:transform .6s cubic-bezier(.2,.7,.2,1),color .4s}
+.svc:hover h3{transform:translateX(24px);color:var(--gold)}
+.svc p{color:var(--muted);max-width:420px}
+#hov{position:fixed;width:300px;height:380px;pointer-events:none;z-index:40;overflow:hidden;opacity:0;transform:translate(-50%,-50%) scale(.7) rotate(-6deg);transition:opacity .3s,transform .5s cubic-bezier(.2,.7,.2,1)}
+#hov.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
+@media(max-width:760px){.svc{grid-template-columns:1fr}#hov{display:none}}
+
+/* drag slider */
+.drag{overflow:hidden;cursor:grab;padding-left:var(--g)}
+.drag:active{cursor:grabbing}
+.drag .rail{display:flex;gap:24px;width:max-content;padding-right:var(--g)}
+.acard{width:clamp(260px,26vw,400px);user-select:none}
+.acard .ph{aspect-ratio:3/4;overflow:hidden;position:relative}
+.acard .ph img{pointer-events:none}
+.acard .ph .psf{position:absolute;left:14px;bottom:14px;background:rgba(15,14,12,.7);color:var(--bone);font-size:12px;padding:6px 12px;backdrop-filter:blur(6px)}
+.acard h3{font:300 34px Fraunces,serif;margin-top:14px}
+.acard p{color:var(--muted);font-size:14px}
+.prog{height:1px;background:var(--line);margin:50px var(--g) 0;position:relative}
+.prog i{position:absolute;left:0;top:-1px;height:3px;background:var(--ink);width:20%}
+
+/* reviews */
+.reviews{text-align:center}
+.reviews blockquote{font:300 clamp(30px,4.6vw,72px)/1.08 Fraunces,serif;max-width:1100px;margin:30px auto}
+
+/* quick search */
+.qs{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:20px;align-items:end;margin-top:60px}
+@media(max-width:900px){.qs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+ <div class="slide on"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2000&q=80" alt=""></div>
+ <div class="slide"><img src="img/gbp3.jpg" alt=""></div>
+ <div class="slide"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2000&q=80" alt=""></div>
+ <div class="slide"><img src="img/gbp1.jpg" alt=""></div>
+ <div class="slide-cap eyebrow" style="color:var(--sand)" id="cap">Villas · Sevasi</div>
+ <div class="hero-tag eyebrow"><span class="live">Open 24 hours</span><br>Vihav Trade Center · Bhayli</div>
+ <div class="hero-copy">
+  <h1 class="serif" id="h1">Vadodara,<br><em>curated</em> for<br>the way you live.</h1>
+  <div class="side" id="side">Buying, selling and commercial property across Bhayli, Gotri, Sevasi and West Vadodara — handled personally, end to end.
+   <div class="ctl"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button>
+    <span class="num"><span id="si">01</span> <small>/ 04</small></span></div></div>
+ </div>
+ <div class="bar" id="bar"></div>
+</section>
+
+<div class="marquee"><div class="track"><span>Bhayli</span><span>Gotri</span><span>Vasna–Bhayli Rd</span><span>Sevasi</span><span>Alkapuri</span><span>Race Course</span><span>Akota</span><span>Sama</span></div></div>
+
+<section class="intro sec wrap">
+ <div class="eyebrow">(01) — The practice</div><br>
+ <p class="big serif" id="reveal">We don't show you fifty flats. We show you the five that actually fit — the right floor, the right light, the right price, and paperwork that never keeps you up at night.</p>
+ <div class="stats">
+  <div><b data-n="5.0" data-d="1">0</b><span class="eyebrow">Google rating</span></div>
+  <div><b data-n="24">0</b><span class="eyebrow">Hours, 7 days</span></div>
+  <div><b data-n="6">0</b><span class="eyebrow">Prime localities</span></div>
+  <div><b data-n="48">0</b><span class="eyebrow">Hour shortlist</span></div>
+ </div>
+</section>
+
+<section class="feat dark" id="feat">
+ <div class="head wrap"><h2 class="big serif">Selected<br><em class="sand">residences</em></h2>
+  <a href="properties.html" class="btn ghost">View all properties →</a></div>
+ <div class="hscroll" id="hscroll"></div>
+</section>
+
+<section class="sec wrap">
+ <div class="eyebrow">(02) — Why TREV</div><br>
+ <h2 class="big serif" style="margin-bottom:8vh">Four promises,<br><em class="gold">kept.</em></h2>
+ <div class="stack">
+  <div class="card"><div class="t"><span class="n">i.</span><div><h3>Verified,<br>not forwarded.</h3><br><p>Every listing we show has been visited, title-checked and RERA-matched by us first.</p></div></div><div class="i"><img src="img/gbp3.jpg" alt=""></div></div>
+  <div class="card"><div class="t"><span class="n">ii.</span><div><h3>Shortlist in<br>48 hours.</h3><br><p>Tell us budget, area and must-haves. Five real options land in your WhatsApp within two days.</p></div></div><div class="i"><img src="img/gbp4.jpg" alt=""></div></div>
+  <div class="card"><div class="t"><span class="n">iii.</span><div><h3>We negotiate.<br>You relax.</h3><br><p>Price, payment plan, parking, possession date — we argue so you don't have to.</p></div></div><div class="i"><img src="img/gbp5.jpg" alt=""></div></div>
+  <div class="card"><div class="t"><span class="n">iv.</span><div><h3>Keys,<br>not paperwork.</h3><br><p>Loan, stamp duty, registry and society transfer handled end to end. You just collect the keys.</p></div></div><div class="i"><img src="img/gbp1.jpg" alt=""></div></div>
+ </div>
+</section>
+
+<section class="sec wrap" style="padding-top:0">
+ <div class="eyebrow">(03) — Services</div><br><br>
+ <a class="svc" href="about.html" data-img="img/gbp1.jpg"><span class="n">01</span><h3>Buying agent</h3><p>We shortlist, negotiate and verify titles — you only visit homes worth your Sunday.</p></a>
+ <a class="svc" href="properties.html?type=Commercial" data-img="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=700&q=80"><span class="n">02</span><h3>Commercial property</h3><p>Offices, showrooms and shops on Vadodara's fastest-growing corridors.</p></a>
+ <a class="svc" href="about.html" data-img="img/gbp4.jpg"><span class="n">03</span><h3>First-time buyers</h3><p>Loans, RERA checks, registry and possession — explained in plain language.</p></a>
+ <a class="svc" href="contact.html" data-img="img/gbp5.jpg"><span class="n">04</span><h3>Sell &amp; rent</h3><p>Right price, real buyers, zero time-wasters. Professional photos included.</p></a>
+</section>
+<div id="hov"><img id="hovimg" alt=""></div>
+
+<section class="sec dark" style="padding-bottom:120px">
+ <div class="wrap" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:60px">
+  <div><div class="eyebrow">(04) — Neighbourhoods</div><br><h2 class="big serif">Know the<br><em class="sand">ground.</em></h2></div>
+  <span class="eyebrow">Drag to explore ⟷</span></div>
+ <div class="drag" id="drag"><div class="rail" id="rail"></div></div>
+ <div class="prog" style="background:rgba(243,239,231,.15)"><i id="dprog" style="background:var(--gold)"></i></div>
+</section>
+
+<section class="sec wrap reviews">
+ <div class="gold" style="letter-spacing:6px">★★★★★</div>
+ <blockquote id="rv">"Great experience! Professional service, quick response, and a very smooth property process."</blockquote>
+ <div class="eyebrow">5.0 · 16 Google reviews</div>
+</section>
+
+<section class="sec wrap" style="padding-top:0">
+ <div style="border-top:1px solid var(--line);padding-top:80px">
+  <div class="eyebrow">(05) — Start here</div><br>
+  <h2 class="big serif">What are you<br><em class="gold">looking for?</em></h2>
+  <form class="qs" action="properties.html">
+   <div class="field"><label>Type</label><select name="type"><option value="">Any</option><option>Apartment</option><option>Villa</option><option>Penthouse</option><option>Commercial</option><option>Plot</option></select></div>
+   <div class="field"><label>Area</label><select name="area"><option value="">Anywhere</option><option>Bhayli</option><option>Gotri</option><option>Sevasi</option><option>Alkapuri</option><option>Akota</option><option>Race Course</option></select></div>
+   <div class="field"><label>Budget</label><select name="max"><option value="">Any</option><option value="8000000">Under ₹80 L</option><option value="15000000">Under ₹1.5 Cr</option><option value="30000000">Under ₹3 Cr</option></select></div>
+   <button class="btn">Search →</button>
+  </form>
+ </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+// ---- hero slider: clip-path wipe + ken burns + autoplay progress
+const slides=[...document.querySelectorAll('.slide')],caps=['Villas · Sevasi','Living rooms · Bhayli','Penthouses · Alkapuri','Bedrooms · Gotri'];
+let cur=0,busy=false,auto;
+gsap.set(slides[0].querySelector('img'),{scale:1.2});
+function go(n,dir=1){
+  if(busy||n===cur)return;busy=true;
+  const a=slides[cur],b=slides[n];
+  gsap.set(b,{clipPath:dir>0?'inset(0 0 0 100%)':'inset(0 100% 0 0)',zIndex:2});gsap.set(a,{zIndex:1});
+  gsap.timeline({onComplete:()=>{a.classList.remove('on');b.classList.add('on');gsap.set(b,{zIndex:1});busy=false}})
+   .to(b,{clipPath:'inset(0 0% 0 0%)',duration:1.3,ease:'expo.inOut'})
+   .fromTo(b.querySelector('img'),{scale:1.4,xPercent:dir*10},{scale:1.08,xPercent:0,duration:2.2,ease:'expo.out'},0)
+   .to(a.querySelector('img'),{xPercent:-dir*15,duration:1.3,ease:'expo.inOut'},0)
+   .set(a.querySelector('img'),{xPercent:0});
+  gsap.fromTo('#cap',{opacity:0,y:10},{opacity:1,y:0,delay:.6});cap.textContent=caps[n];
+  cur=n;si.textContent='0'+(n+1);loop();
+}
+function loop(){auto&&auto.kill();auto=gsap.fromTo('#bar',{width:'0%'},{width:'100%',duration:6,ease:'none',onComplete:()=>go((cur+1)%slides.length)})}
+next.onclick=()=>go((cur+1)%4,1);prev.onclick=()=>go((cur+3)%4,-1);
+
+// intro
+riseLines('#h1',PAGE_IN,'-=.4');
+PAGE_IN.from('#side,.hero-tag,.slide-cap',{opacity:0,y:20,duration:1,stagger:.1},'-=.8')
+ .fromTo(slides[0].querySelector('img'),{scale:1.4},{scale:1.08,duration:2.4,ease:'expo.out'},.3).add(loop);
+gsap.to('.hero-copy',{yPercent:-30,opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+// word reveal
+const r=document.getElementById('reveal');r.innerHTML=r.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+gsap.to('#reveal .w',{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:r,start:'top 80%',end:'bottom 45%',scrub:true}});
+
+// featured horizontal pin
+const h=document.getElementById('hscroll');h.innerHTML=PROPS.slice(0,6).map(cardHTML).join('');
+ScrollTrigger.matchMedia({'(min-width:761px)':()=>{gsap.to(h,{x:()=>-(h.scrollWidth-innerWidth),ease:'none',scrollTrigger:{trigger:'#feat',pin:true,scrub:1,end:()=>'+='+(h.scrollWidth-innerWidth),invalidateOnRefresh:true}})},
+ '(max-width:760px)':()=>{h.style.width='auto';h.style.overflowX='auto'}});
+
+// stacking cards: earlier cards shrink + dim as next ones arrive
+const cards=gsap.utils.toArray('.stack .card');
+cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.9-(cards.length-i)*.02,filter:'brightness(.7)',ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top bottom',end:'top 12%',scrub:true}});
+ gsap.fromTo(c.querySelector('img'),{scale:1.3},{scale:1,ease:'none',scrollTrigger:{trigger:c,start:'top bottom',end:'top 12%',scrub:true}})});
+
+// service hover image
+const hov=document.getElementById('hov'),hx=gsap.quickTo(hov,'left',{duration:.6,ease:'power3'}),hy=gsap.quickTo(hov,'top',{duration:.6,ease:'power3'});
+addEventListener('mousemove',e=>{hx(e.clientX);hy(e.clientY)});
+document.querySelectorAll('.svc').forEach(s=>{s.onmouseenter=()=>{hovimg.src=s.dataset.img;hov.classList.add('on')};s.onmouseleave=()=>hov.classList.remove('on')});
+
+// drag slider with inertia + skew
+rail.innerHTML=AREAS.map(a=>`<a class="acard" href="areas.html#${a.name.replace(/\s/g,'')}"><div class="ph"><img src="${a.img}" alt="${a.name}"><span class="psf">${a.psf} / sq ft*</span></div><h3>${a.name}</h3><p>${a.vibe}</p></a>`).join('');
+(()=>{let x=0,tx=0,down=false,sx=0,moved=0;const max=()=>Math.min(0,drag.clientWidth-rail.scrollWidth);
+ drag.addEventListener('pointerdown',e=>{down=true;sx=e.clientX-tx;moved=0});
+ addEventListener('pointerup',()=>down=false);
+ addEventListener('pointermove',e=>{if(!down)return;tx=Math.max(max(),Math.min(0,e.clientX-sx));moved++});
+ drag.addEventListener('click',e=>{if(moved>3)e.preventDefault()},true);
+ drag.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){tx=Math.max(max(),Math.min(0,tx-e.deltaX))}},{passive:true});
+ gsap.ticker.add(()=>{const v=tx-x;x+=v*.1;gsap.set(rail,{x,skewX:Math.max(-8,Math.min(8,v*.05))});dprog.style.left=(max()?(x/max())*80:0)+'%'})})();
+
+// reviews
+const R=['"Great experience! Professional service, quick response, and a very smooth property process."','"Good service and smooth process for any deal."','"Good service."'];let ri=0;
+setInterval(()=>{ri=(ri+1)%R.length;gsap.to('#rv',{opacity:0,y:-20,duration:.4,onComplete:()=>{rv.textContent=R[ri];gsap.fromTo('#rv',{y:20},{opacity:1,y:0,duration:.6})}})},5000);
+
+reveals();
+</script>
+</body>
+</html>
